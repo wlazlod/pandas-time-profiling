@@ -1,0 +1,7 @@
+pandas
+numpy
+jinja2
+matplotlib
+seaborn
+pretty_html_table
+tqdm

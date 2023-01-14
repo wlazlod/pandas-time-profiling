@@ -1,0 +1,14 @@
+# Requirements
+include requirements.txt
+
+# Include license, Readme, etc.
+include LICENSE
+include *.md
+include mypy.ini
+include src/pandas_time_profiling/py.typed
+
+# Templates and static resources
+recursive-include src/pandas_time_profiling/templates *.html *.jinja
+
+# Configuration
+include src/pandas_time_profiling/*.yaml

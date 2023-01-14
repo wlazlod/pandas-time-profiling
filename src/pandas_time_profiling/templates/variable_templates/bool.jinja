@@ -1,0 +1,45 @@
+        <!-- Variable: {{VARIABLE_NAME}}  -->
+        <div class=section-items>
+            <div class="row spacing"><a class="anchor-pos anchor-pos-variable" id=pp_var_{{VARIABLE_ID}}></a>
+                <div class=variable>
+                    <div class=col-sm-3>
+                        <p class=h4 title={{VARIABLE_NAME}}><a href=#pp_var_{{VARIABLE_ID}}>{{VARIABLE_NAME}}</a></p><code>{{TYPE}}</code><br><p class=variable-description></p>
+                    </div>
+                    <div class="col-sm-12 text-right">
+                        <button class="btn btn-default btn-sm" data-toggle=collapse data-target="#bottom--{{VARIABLE_ID}}, #minifreqtable-{{VARIABLE_ID}}" aria-expanded=true aria-controls=collapseExample>Toggle details</button>
+                    </div>
+                    <div id=bottom--{{VARIABLE_ID}} class=collapse>
+                        <div class="row spacing">
+                            <ul class="nav nav-tabs" role=tablist>
+                                <li role=presentation class=active><a href=#-{{VARIABLE_ID}}bottom--{{VARIABLE_ID}}relative_distribution aria-controls=-{{VARIABLE_ID}}bottom--{{VARIABLE_ID}}relative_distribution role=tab data-toggle=tab>Relative distribution</a></li>
+                                <li role=presentation><a href=#-{{VARIABLE_ID}}bottom--{{VARIABLE_ID}}absolute_distribution aria-controls=-{{VARIABLE_ID}}bottom--{{VARIABLE_ID}}absolute_distribution role=tab data-toggle=tab>Absolute distribution</a></li>
+                            </ul>
+                            <div class=tab-content>
+                                <div role=tabpanel class="tab-pane col-sm-12 active" id=-{{VARIABLE_ID}}bottom--{{VARIABLE_ID}}relative_distribution>
+                                    <div class=col-sm-12><p class=h4>Relative distribution</p>
+                                        <div class="scroll">
+                                       {{RELATIVE_DISTRIBUTION_TABLE}}
+                                        </div>
+                                        <br>
+                                    </div>
+                                    <div class=col-sm-12>
+                                       <img width=100% display=block src="data:image/svg+xml;base64,{{RELATIVE_DISTRIBUTION_IMG}}">
+                                    </div>
+                                </div>
+                                <div role=tabpanel class="tab-pane col-sm-12" id=-{{VARIABLE_ID}}bottom--{{VARIABLE_ID}}absolute_distribution>
+                                    <div class=col-sm-12><p class=h4>Absolute distribution</p>
+                                       <div class="scroll">
+                                       {{ABSOLUTE_DISTRIBUTION_TABLE}}
+                                       </div>
+                                        <br>
+                                    </div>
+                                    <div class=col-sm-12>
+                                       <img width=100% display=block src="data:image/svg+xml;base64,{{ABSOLUTE_DISTRIBUTION_IMG}}">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
