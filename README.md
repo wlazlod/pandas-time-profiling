@@ -10,7 +10,7 @@ It produces similiar report but focuses on checking the distribution regarding t
 For using in local enviroment you can install the package directly from git:
 
 ```bash
-pip install git+https://github.axa.com/daniel-wlazlo-external/pandas-time-profiling.git
+pip install git+https://github.com/wlazlod/pandas-time-profiling.git
 ```
 To install from cloned repo:
 ```bash
