@@ -11,6 +11,8 @@ from pathlib import Path
 import warnings
 from tqdm import tqdm
 import jinja2
+from textwrap import dedent
+from htmlmin.main import minify
 
 import pandas as pd
 from pandas.api.types import is_datetime64_any_dtype as is_datetime
@@ -72,10 +74,12 @@ class ProfileTimeReport:
         self.start_time = start.strftime("%Y-%m-%d %H:%M:%S")
         self.version = version.__version__
 
-        df_grouped = self.df.groupby(self.df[self.time_variable].dt.to_period(self.time_unit))
+        df_grouped = self.df.groupby(self.df[self.time_variable]\
+                         .dt.to_period(self.time_unit))
 
         self.variable_list = [VariableReport(df_grouped[column], self.df[column]) \
             for column in tqdm(self.df, total=len(self.df.columns))]
+
         self.variable_reports = [variable.create_report() for variable in self.variable_list]
         self.types = calculate_variable_types(self.variable_list)
         end = datetime.now()
@@ -89,11 +93,12 @@ class ProfileTimeReport:
             Profiling report html.
         """
         path = get_project_root() / "templates"
-        template_loader = jinja2.FileSystemLoader(searchpath=path)
+        template_loader = jinja2.FileSystemLoader(searchpath=path, followlinks=True)
         template_env = jinja2.Environment(loader=template_loader)
         template_file = "template.jinja"
         template = template_env.get_template(template_file)
-        self.html = template.render(VERSION = self.version,
+
+        rendered_template = template.render(VERSION = self.version,
                                     DATE = self.date,
                                     TITLE = self.title,
                                     N_VARIABLES = str(len(self.variable_list)),
@@ -106,6 +111,8 @@ class ProfileTimeReport:
                                     VARIABLE_REPORTS = self.variable_reports
                                    )
 
+        self.html = minify(rendered_template, remove_all_empty_space=True, remove_comments=True)
+    
         return self.html
 
     def to_file(self, output_file: Union[str, Path]) -> None:

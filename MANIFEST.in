@@ -8,7 +8,7 @@ include mypy.ini
 include src/pandas_time_profiling/py.typed
 
 # Templates and static resources
-recursive-include src/pandas_time_profiling/templates *.html *.jinja
+recursive-include src/pandas_time_profiling/templates *.html *.jinja *.css *.js
 
 # Configuration
 include src/pandas_time_profiling/*.yaml
